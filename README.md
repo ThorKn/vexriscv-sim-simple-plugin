@@ -1,39 +1,58 @@
-# vexriscv-sim-simple-plugin
+# Simulate a Vexriscv with a simple plugin and run an application in it.
 
 Here is what you can do with this repo:
 - Run a simulation of a Vexriscv.
-- The Vexriscv includes a simple plugin inserted into the pipepline
-- The plugin is design as an ISA Custom Instruction (CUSTOM_0)
+- The Vexriscv includes a simple plugin inserted into the pipepline.
+- The plugin is design as an ISA Custom Instruction (CUSTOM_0).
 - Connect GDB to the Vexriscv via OpenOCD.
 - Compile a C "hello world" and load it into the Vexriscv.
 - Step through the "hello world" with GDB and see the UART output.
-- The Custom Instruction is driven by the c-application
+- The Custom Instruction is driven by the c-application.
 
-# Prerequisites:
+## Prerequisites:
 
 All the neccessary tools are contained in this Virtual Machine (VM):
 
-[Virtual Machine](https://random-oracles.org/risc-v/)
+[Virtual Machine 2.0 (https://random-oracles.org/risc-v/)](https://random-oracles.org/risc-v/)
 
 Download the VM and follow the documentation for starting it up.
 
+**This project is tested with the QuantumRisc VM 2.0.**
 
-# How to do this?
+## How to do this?
 
-Build the Vexriscv and start the simulation:
+Start the Virtual Machine. From here on you work inside the QuantumRisc Virtual Machine (VM). The VM is based on Ubuntu 20.04 LTS and has a Gnome desktop.
 
-From the root of the repo, enter
+### 0: Update Ubuntu and then clone this repository:
+Open up a console and bring Ubuntu up to date. Then clone this respository.
 ```
+sudo apt-get update
+sudo apt-get upgrade
+```
+Then clone this respository.
+```
+git clone https://github.com/ThorKn/vexriscv-sim-helloworld.git
+```
+
+### 1: Build the Vexriscv and start the simulation:
+
+Open up a console (Terminal). From the root folder of the repo, change to the folder ```vexriscv``` and start the Vexriscv Simulation. 
+```
+cd vexriscv
 sbt "runMain mupq.PQVexRiscvSim"
 ```
 
-Then connect OpenOCD to the Vexriscv (from a new console window):
+### 2: Connect OpenOCD (The Vexriscv version) to the Simulation:
+
+Open up a new console (the second one). From the root folder of the repo, change to the folder ```vexriscv``` and connect OpenOCD to the Vexriscv Simulation. The OpenOCD configuration is stored in the file ```vexriscvsim.cfg```.
 ```
+cd vexriscv
 openocd-vexriscv -f vexriscvsim.cfg
 ```
 
-Now the Vexriscv is running and ready to take and run an application.
-So you should change to the folder c_project and build the application:
+### 3: Build, upload and run the C application (a simple helloworld):
+
+Open up a new console (the third one). From the root folder of the repo, change to the folder ```c_project```. Build the application via the Makefile. 
 ```
 cd c_project
 make
