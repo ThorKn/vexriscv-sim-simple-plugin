@@ -31,7 +31,7 @@ sudo apt-get upgrade
 ```
 Then clone this respository.
 ```
-git clone https://github.com/ThorKn/vexriscv-sim-helloworld.git
+git clone https://github.com/ThorKn/vexriscv-sim-simple-plugin.git
 ```
 
 ### 1: Build the Vexriscv and start the simulation:
