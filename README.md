@@ -1,4 +1,4 @@
-# Simulate a Vexriscv with a simple plugin and run an application in it.
+# Simulate a Vexriscv (containing a simple pipeline-plugin) and run an application in it.
 
 Here is what you can do with this repo:
 - Run a simulation of a Vexriscv.
